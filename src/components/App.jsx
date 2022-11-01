@@ -23,17 +23,3 @@ const App = () => {
 };
 
 export default App;
-
-//////////  <div className="row">
-//    <Header formIsComplete={formComplete} />
-//   <main className="container">
-//       {formComplete ? (
-//         <FormCompleted formIsComplete={formComplete} />
-//       ) : (
-//         <CardForm
-///           formIsComplete={formComplete}
-//           setFormIsComplete={setFormState}
-//         />
-//       )}
-//     </main>
-//   </div>
