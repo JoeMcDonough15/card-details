@@ -1,5 +1,5 @@
-import FrontOfCardDetails from "./FrontOfCardDetails";
 import bgCardFront from "../images/bg-card-front.png";
+import cardLogo from "../images/card-logo.svg";
 
 const FrontOfCard = (props) => {
   return (
@@ -9,11 +9,20 @@ const FrontOfCard = (props) => {
         src={bgCardFront}
         alt="The front of a credit card"
       />
-      <FrontOfCardDetails
-        cardNumber={props.cardNumber}
-        cardHolder={props.cardHolder}
-        cardExpiration={props.cardExpiration}
-      />
+      <div className="front-of-card-details">
+        <img className="card-logo" src={cardLogo} alt="credit card logo" />
+        <p className="sample-card-number card-details">
+          {props.details.cardNumber}
+        </p>
+        <div className="card-bottom-row">
+          <p className="sample-card-holder card-details">
+            {props.details.cardHolder}
+          </p>
+          <p className="sample-expiration card-details">
+            {props.details.expirationMonth}/{props.details.expirationYear}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

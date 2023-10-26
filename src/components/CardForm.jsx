@@ -1,28 +1,81 @@
 import React from "react";
-import FormField from "./FormField";
 import FormButton from "./FormButton";
 
 const CardForm = (props) => {
+  const userCardDetails = {};
+  const handleChange = (event) => {
+    userCardDetails[event.target.name] = event.target.value;
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.updateCardDetails(userCardDetails);
+    props.setFormIsComplete(true);
+  };
   return (
-    <form className="form-container" action="">
-      <FormField
-        labelText="Cardholder Name"
-        placeHolderText="e.g. Jane Appleseed"
-      />
-      <FormField
-        labelText="Card Number"
-        placeHolderText="e.g. 1234 5678 9123 0000"
-      />
-      <div className="form-bottom-row">
-        <FormField labelText="Exp. Date" placeHolderText="MM" />
-        <FormField labelText="(MM/YY)" placeHolderText="YY" />
-        <FormField labelText="CVC" placeHolderText="e.g. 123" />
+    <form className="form-container" action="" onSubmit={handleSubmit}>
+      <div className="form-field">
+        <label className="form-label" htmlFor="">
+          Cardholder Name
+        </label>
+        <input
+          className="form-input"
+          name="cardHolder"
+          onChange={handleChange}
+          type="text"
+          placeholder="e.g. Jane Appleseed"
+        />
       </div>
-      <FormButton
-        formIsComplete={props.formIsComplete}
-        updateForm={props.setFormIsComplete}
-        buttonText="Confirm"
-      />
+      <div className="form-field">
+        <label className="form-label" htmlFor="">
+          Card Number
+        </label>
+        <input
+          className="form-input"
+          name="cardNumber"
+          onChange={handleChange}
+          type="text"
+          placeholder="e.g. 1234 5678 9123 0000"
+        />
+      </div>
+      <div className="form-bottom-row">
+        <div className="form-field">
+          <label className="form-label" htmlFor="">
+            Exp. Date
+          </label>
+          <input
+            className="form-input"
+            name="expirationMonth"
+            onChange={handleChange}
+            type="text"
+            placeholder="MM"
+          />
+        </div>
+        <div className="form-field">
+          <label className="form-label" htmlFor="">
+            (MM/YY)
+          </label>
+          <input
+            className="form-input"
+            name="expirationYear"
+            onChange={handleChange}
+            type="text"
+            placeholder="YY"
+          />
+        </div>
+        <div className="form-field">
+          <label className="form-label" htmlFor="">
+            CVC
+          </label>
+          <input
+            className="form-input"
+            name="cardCvc"
+            onChange={handleChange}
+            type="text"
+            placeholder="e.g. 123"
+          />
+        </div>
+      </div>
+      <FormButton buttonText="confirm" />
     </form>
   );
 };

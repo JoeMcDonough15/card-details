@@ -1,4 +1,3 @@
-import BackOfCardDetails from "./BackOfCardDetails";
 import backOfCardImage from "../images/bg-card-back.png";
 
 const BackOfCard = (props) => {
@@ -9,7 +8,9 @@ const BackOfCard = (props) => {
         src={backOfCardImage}
         alt="back of a credit card"
       />
-      <BackOfCardDetails cardCvc={props.cardCvc} />
+      <p className="back-of-card-details card-details">
+        {props.details.cardCvc}
+      </p>
     </div>
   );
 };

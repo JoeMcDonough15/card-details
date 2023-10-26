@@ -4,17 +4,24 @@ import CardForm from "./CardForm";
 import FormCompleted from "./FormCompleted";
 
 const App = () => {
-  const [formComplete, setFormState] = useState(false);
+  const [formComplete, setFormComplete] = useState(false);
+  const [cardDetails, setCardDetails] = useState({
+    cardHolder: "Jane Appleseed",
+    cardNumber: "0000 0000 0000 0000",
+    expirationMonth: "00",
+    expirationYear: "00",
+    cardCvc: "000",
+  });
   return (
     <div>
-      <Header formIsComplete={formComplete} />
+      <Header cardDetails={cardDetails} />
       <main className="container">
         {formComplete ? (
-          <FormCompleted formIsComplete={formComplete} />
+          <FormCompleted />
         ) : (
           <CardForm
-            formIsComplete={formComplete}
-            setFormIsComplete={setFormState}
+            setFormIsComplete={setFormComplete}
+            updateCardDetails={setCardDetails}
           />
         )}
       </main>
@@ -23,17 +30,3 @@ const App = () => {
 };
 
 export default App;
-
-//////////  <div className="row">
-//    <Header formIsComplete={formComplete} />
-//   <main className="container">
-//       {formComplete ? (
-//         <FormCompleted formIsComplete={formComplete} />
-//       ) : (
-//         <CardForm
-///           formIsComplete={formComplete}
-//           setFormIsComplete={setFormState}
-//         />
-//       )}
-//     </main>
-//   </div>

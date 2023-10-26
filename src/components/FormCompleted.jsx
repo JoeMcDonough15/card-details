@@ -12,7 +12,7 @@ const FormCompleted = (props) => {
       />
       <h2 className="completed-form-header">Thank You!</h2>
       <p className="completed-form-text">We've added your card details</p>
-      <FormButton buttonText="Continue" formIsComplete={props.formIsComplete} />
+      <FormButton buttonText="continue" />
     </section>
   );
 };

@@ -5,12 +5,8 @@ import BackOfCard from "./BackOfCard";
 const CardImagesContainer = (props) => {
   return (
     <div className="card-images-container">
-      <BackOfCard cardCvc={props.cardCvc} />
-      <FrontOfCard
-        cardHolder={props.cardHolder}
-        cardNumber={props.cardNumber}
-        cardExpiration={props.cardExpiration}
-      />
+      <BackOfCard details={props.cardDetails} />
+      <FrontOfCard details={props.cardDetails} />
     </div>
   );
 };

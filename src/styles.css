@@ -222,6 +222,7 @@ img {
   color: var(--white);
   font: inherit;
   padding: 1.111em 7.166em;
+  text-transform: capitalize;
 }
 
 .continue-form-button {
