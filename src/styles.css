@@ -243,6 +243,14 @@ img {
   margin-bottom: 2.72em;
 }
 
+.warning {
+  border: 5px solid red; /* warning border should match exact color and border-width of design */
+}
+
+.warning:focus {
+  border: none; /* the focused input state border should be applied to all inputs that are in a focused state, not just those with a warning class. I think it's a purple color border */
+}
+
 @media (min-width: 1300px) {
   .card-images-container,
   .header,
