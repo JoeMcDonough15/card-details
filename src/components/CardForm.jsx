@@ -2,7 +2,6 @@ import React from "react";
 import FormButton from "./FormButton";
 
 // no field can be blank
-
 const blank = (charString) => {
   return charString.length === 0;
 };
@@ -17,28 +16,53 @@ const containsInvalidCharacters = (cardNumber) => {
   return containsWhiteSpace(cardNumber, 2) || containsLetter(cardNumber);
 };
 
-const incorrectCardLength = (charString) => {
-  // must be 19 characters long once spaced out
-  return charString.length !== 19;
+// const incorrectCardLength = (charString) => {
+//   // must be 19 characters long once spaced out
+//   return charString.length !== 19;
+// };
+
+const keepToTwoCharacters = (charString) => {
+  if (charString.length > 2) {
+    charString = charString.slice(2);
+  }
+  return charString;
 };
 
-// Format card number as: \d\d\d\d \d\d\d\d \d\d\d\d \d\d\d\d
+const correctStringLength = (charString, correctStringLength) => {
+  return charString.length === correctStringLength;
+};
+
+const isValidMonth = (monthString) => {
+  return (
+    !containsNonDigit(monthString) &&
+    correctStringLength(monthString, 2) &&
+    monthInRange(monthString)
+  );
+};
+
+const isValidYear = (yearString) => {
+  return !containsNonDigit(yearString) && correctStringLength(yearString, 2);
+};
 
 const spaceOutCharacters = (cardNumber) => {
+  // Format card number as: \d\d\d\d \d\d\d\d \d\d\d\d \d\d\d\d
   const cardNumberBlocks = cardNumber.match(/[\d]{1,4}/g);
   const newCardNumber = cardNumberBlocks.join(" ");
   return newCardNumber;
 };
 
-// MM, YY, and CVC fields may contain only digits
-
 const containsNonDigit = (charString) => {
+  // MM, YY, and CVC fields may contain only digits
   const regex = new RegExp(/[^\d]+/);
   console.log("returning: ", regex.test(charString));
   return regex.test(charString);
 };
 
-// no white space for MM, YY, or CVC.
+const monthInRange = (monthString) => {
+  console.log("month: ", monthString);
+  console.log("month in range: ", Number(monthString) <= 12);
+  return Number(monthString) <= 12;
+};
 
 const containsWhiteSpace = (charString, quantifier) => {
   let regex;
@@ -53,8 +77,11 @@ const containsWhiteSpace = (charString, quantifier) => {
 const CardForm = (props) => {
   const userCardDetails = {};
   const handleChange = (event) => {
+    const inputName = event.target.name;
+    const inputValue = event.target.value.toString();
+
     // Regardless of input, it must not be empty; if so, raise error: "Can't be blank."
-    if (blank(event.target.value)) {
+    if (blank(inputValue)) {
       console.log("Can't be blank.");
       event.target.classList.add("warning", "warning-blank");
       return;
@@ -62,9 +89,9 @@ const CardForm = (props) => {
       console.log("no longer blank! removing warning");
       event.target.classList.remove("warning", "warning-blank");
     }
-    if (event.target.name === "cardHolder") {
+    if (inputName === "cardHolder") {
       // must contain at least one letter character
-      if (!containsLetter(event.target.value)) {
+      if (!containsLetter(inputValue)) {
         console.log("Must contain at least one word character!");
         event.target.classList.add("warning", "warning-must-have-word-char");
         return;
@@ -73,18 +100,18 @@ const CardForm = (props) => {
         event.target.classList.remove("warning", "warning-must-have-word-char");
       }
     }
-    if (event.target.name === "cardNumber") {
-      if (containsInvalidCharacters(event.target.value.toString())) {
+    if (inputName === "cardNumber") {
+      if (containsInvalidCharacters(inputValue)) {
         console.log("numbers only, wrong format");
         event.target.classList.add("warning", "warning-format");
         return;
       } else {
         console.log("removing warning of wrong format");
         event.target.classList.remove("warning", "warning-format");
-        event.target.value = spaceOutCharacters(event.target.value);
+        event.target.value = spaceOutCharacters(inputValue);
       }
 
-      if (incorrectCardLength(event.target.value.toString())) {
+      if (!correctStringLength(inputValue, 19)) {
         console.log("invalid card number, incorrect length");
         event.target.classList.add("warning", "warning-incorrect-length");
         return;
@@ -93,38 +120,33 @@ const CardForm = (props) => {
         event.target.classList.remove("warning", "warning-incorrect-length");
       }
     }
-    if (
-      event.target.name === "expirationMonth" ||
-      event.target.name === "expirationYear"
-    ) {
-      // must be exactly 2 characters long; if it's 1 digit, raise error: "Must be 2 digits"
-      if (event.target.value.length === 1) {
-        console.log("warning for 1 digit would be added");
-        event.target.classList.add("warning", "warning-one-digit");
-      } else if (event.target.value.length === 2) {
-        console.log("warning fr 1 digit would be removed");
-        event.target.classList.remove("warning", "warning-one-digit");
-      }
-      // if it's too many digits, write code that cuts it off at correct num of digits
-      // this can be reused for cardNumber.  give the number of characters as an int argument,
-      // in this case, 2.
-      if (event.target.value.length > 2) {
-        event.target.value = event.target.value.toString().slice(2);
-      }
+    if (inputName === "expirationMonth") {
+      event.target.value = keepToTwoCharacters(inputValue);
 
-      // const today = new Date();
-      // if (event.target.name === "expirationYear") {
-      //   const currentYear = today.getFullYear().toString().slice(2);
-      //   if (Number(currentYear) > Number(event.target.value)) {
-      //     // raise error - card expired
-      //   } else if (Number(currentYear) === Number(event.target.value)) {
-      //     // check month
-      //   }
-      // }
+      if (!isValidMonth(inputValue)) {
+        console.log("invalid month");
+        event.target.classList.add("warning", "invalid-month");
+        return;
+      } else {
+        console.log("valid month");
+        event.target.classList.remove("warning", "invalid-month");
+      }
     }
 
+    if (inputName === "expirationYear") {
+      event.target.value = keepToTwoCharacters(inputValue);
+      if (!isValidYear(inputValue)) {
+        console.log("invalid year");
+        event.target.classList.add("warning", "invalid-year");
+        return;
+      } else {
+        console.log("valid year");
+        event.target.classList.remove("warning", "invalid-year");
+      }
+    }
     userCardDetails[event.target.name] = event.target.value;
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.updateCardDetails(userCardDetails);
