@@ -55,20 +55,39 @@ const isValidYear = (yearString) => {
 const checkExpiration = () => {
   const monthElement = document.getElementById("month-input");
   const yearElement = document.getElementById("year-input");
+  const dateElements = [monthElement, yearElement];
   const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+  const lastTwoDigitsOfYear = Number(currentYear.toString().slice(2));
   if (yearElement.value === "" || monthElement.value === "") {
     return;
   }
-  if (Number(yearElement.value) < 23) {
+  if (Number(yearElement.value) < lastTwoDigitsOfYear) {
     console.log("card expired");
-  } else if (Number(yearElement.value) === 23) {
+    dateElements.forEach((element) => {
+      element.classList.add("warning");
+    });
+    monthElement.classList.add("warning-card-expired");
+  } else if (Number(yearElement.value) === lastTwoDigitsOfYear) {
     if (Number(monthElement.value) - 1 <= currentMonth) {
       console.log("card expired");
+      dateElements.forEach((element) => {
+        element.classList.add("warning");
+      });
+      monthElement.classList.add("warning-card-expired");
     } else {
       console.log("card valid");
+      dateElements.forEach((element) => {
+        element.classList.remove("warning");
+      });
+      monthElement.classList.remove("warning-card-expired");
     }
   } else {
     console.log("card valid");
+    dateElements.forEach((element) => {
+      element.classList.remove("warning");
+    });
+    monthElement.classList.remove("warning-card-expired");
   }
 };
 
@@ -121,7 +140,7 @@ const CardForm = (props) => {
         event.target.classList.add("warning", "warning-no-digits");
         return;
       } else {
-        console.log("Name includes word character! removing warning");
+        console.log("Name doesn't include digits! removing warning");
         event.target.classList.remove("warning", "warning-no-digits");
       }
     }
@@ -172,6 +191,26 @@ const CardForm = (props) => {
       } else {
         console.log("valid year");
         event.target.classList.remove("warning", "invalid-year");
+      }
+    }
+
+    if (inputName === "cardCvc") {
+      event.target.value = keepToMaxCharacters(event.target.value, 3);
+      if (containsNonDigit(event.target.value)) {
+        console.log("numbers only, wrong format");
+        event.target.classList.add("warning", "warning-format");
+        return;
+      } else {
+        console.log("removing warning of wrong format");
+        event.target.classList.remove("warning", "warning-format");
+      }
+      if (!correctStringLength(event.target.value, 3)) {
+        console.log("invalid card number, too short");
+        event.target.classList.add("warning", "warning-incorrect-length");
+        return;
+      } else {
+        console.log("Removing warning, card number is correct length");
+        event.target.classList.remove("warning", "warning-incorrect-length");
       }
     }
 
