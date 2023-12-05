@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import CardForm from "./CardForm";
+import CardForm from "./CardForm/CardForm";
 import FormCompleted from "./FormCompleted";
 
 const App = () => {

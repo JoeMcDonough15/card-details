@@ -24,6 +24,11 @@
   --desktop-header-width: 484px;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: var(--white);
   color: var(--very-dark-violet);
@@ -37,6 +42,10 @@ button {
 
 img {
   max-width: 100%;
+}
+
+div#root {
+  min-width: 100vh;
 }
 
 .container,
@@ -56,6 +65,7 @@ img {
 .header,
 .background-header-img,
 .form-field,
+.form-bottom-row,
 .form-bottom-row div:nth-child(3),
 .form-input {
   width: 100%;
@@ -108,13 +118,17 @@ img {
 .form-field,
 .completed-form-container,
 .card-bottom-row,
-.form-bottom-row {
+.form-bottom-row,
+.form-button,
+.date-container,
+.month-year-row {
   display: flex;
 }
 
 .front-of-card-details,
 .form-container,
 .form-field,
+.date-container,
 .completed-form-container {
   flex-direction: column;
 }
@@ -171,7 +185,7 @@ img {
 }
 
 .form-container {
-  gap: 1.11111em;
+  align-items: flex-start;
 }
 
 .form-field {
@@ -180,19 +194,25 @@ img {
 
 .form-bottom-row {
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 0.44em;
 }
 
-.form-bottom-row .form-field {
-  width: 21%;
+.date-container {
+  width: 60%;
 }
 
-.form-bottom-row div:nth-child(2) {
-  margin-left: 0.44em;
+.month-year-row {
+  justify-content: space-between;
+  width: 80%;
 }
 
-.form-bottom-row div:nth-child(3) {
-  margin-left: 0.66em;
+.month-year-row .form-field {
+  width: 45%;
+}
+
+.form-field-cvc {
+  width: 40%;
 }
 
 .form-label,
@@ -221,6 +241,7 @@ img {
   background-color: var(--very-dark-violet);
   color: var(--white);
   font: inherit;
+  justify-content: center;
   padding: 1.111em 7.166em;
   text-transform: capitalize;
 }
@@ -244,11 +265,25 @@ img {
 }
 
 .warning {
-  border: 5px solid red; /* warning border should match exact color and border-width of design */
+  outline: 2px solid var(--input-error-color);
 }
 
-.warning:focus {
-  border: none; /* the focused input state border should be applied to all inputs that are in a focused state, not just those with a warning class. I think it's a purple color border */
+.warning-text {
+  color: var(--input-error-color);
+  visibility: hidden;
+  width: max-content;
+}
+
+.warning-text-appear {
+  visibility: visible;
+}
+
+.date-warning-text {
+  margin-top: 0.5em;
+}
+
+.form-input:focus {
+  outline: 2px solid var(--very-dark-violet);
 }
 
 @media (min-width: 1300px) {
@@ -346,19 +381,15 @@ img {
   }
 
   .form-container {
-    gap: 1.66em;
+    gap: 0.8em;
   }
 
   .form-bottom-row {
     margin-bottom: 0.55em;
   }
 
-  .form-bottom-row div:nth-child(2) {
-    margin-left: 0.66em;
-  }
-
-  .form-bottom-row div:nth-child(3) {
-    margin-left: 1.22em;
+  .form-field-cvc {
+    width: 40%;
   }
 
   .form-button {
