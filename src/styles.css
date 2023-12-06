@@ -213,7 +213,8 @@ img {
 }
 
 .form-input,
-.form-button {
+.form-button,
+.warning {
   border-radius: var(--curved-border);
 }
 
@@ -272,6 +273,7 @@ img {
 }
 
 .form-input:focus {
+  border-radius: var(--curved-border);
   outline: 2px solid var(--very-dark-violet);
 }
 
