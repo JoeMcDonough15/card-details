@@ -44,10 +44,6 @@ img {
   max-width: 100%;
 }
 
-div#root {
-  min-width: 100vh;
-}
-
 .container,
 .card-images-container {
   margin: auto;
@@ -66,7 +62,6 @@ div#root {
 .background-header-img,
 .form-field,
 .form-bottom-row,
-.form-bottom-row div:nth-child(3),
 .form-input {
   width: 100%;
 }
@@ -198,10 +193,6 @@ div#root {
   margin-bottom: 0.44em;
 }
 
-.date-container {
-  width: 60%;
-}
-
 .month-year-row {
   justify-content: space-between;
   width: 80%;
@@ -209,10 +200,6 @@ div#root {
 
 .month-year-row .form-field {
   width: 45%;
-}
-
-.form-field-cvc {
-  width: 40%;
 }
 
 .form-label,
@@ -244,6 +231,7 @@ div#root {
   justify-content: center;
   padding: 1.111em 7.166em;
   text-transform: capitalize;
+  width: 100%;
 }
 
 .continue-form-button {
@@ -255,6 +243,7 @@ div#root {
 }
 
 .completed-form-header {
+  font-size: 1.6875rem;
   letter-spacing: 0.185em;
   margin: 1.5em 0 0.88em;
 }
@@ -284,6 +273,46 @@ div#root {
 
 .form-input:focus {
   outline: 2px solid var(--very-dark-violet);
+}
+
+@media (max-width: 340px) {
+  .back-of-card,
+  .front-of-card {
+    width: 260px;
+  }
+
+  .front-of-card-details {
+    right: 3px;
+  }
+
+  .back-of-card-details {
+    top: 62px;
+  }
+
+  .sample-card-number {
+    font-size: 0.8rem;
+  }
+
+  .form-input,
+  .form-label {
+    font-size: 0.6rem;
+  }
+
+  .form-button {
+    font-size: 0.9rem;
+  }
+
+  .warning-text {
+    font-size: 0.7rem;
+  }
+
+  .completed-form-header {
+    font-size: 1.5rem;
+  }
+
+  .completed-form-text {
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 1300px) {
