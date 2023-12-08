@@ -227,7 +227,7 @@ const CardForm = (props) => {
       userCardDetails[inputElement.name] = inputElement.value;
     });
     props.updateCardDetails(userCardDetails);
-    props.setFormIsComplete(true);
+    props.setFormState(true);
   };
   return (
     <form className="form-container" action="" onSubmit={handleSubmit}>

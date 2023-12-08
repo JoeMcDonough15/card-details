@@ -4,23 +4,28 @@ import CardForm from "./CardForm/CardForm";
 import FormCompleted from "./FormCompleted";
 
 const App = () => {
-  const [formComplete, setFormComplete] = useState(false);
-  const [cardDetails, setCardDetails] = useState({
+  const [formComplete, setFormState] = useState(false);
+  const sampleDetails = {
     cardHolder: "Jane Appleseed",
     cardNumber: "0000 0000 0000 0000",
     expirationMonth: "00",
     expirationYear: "00",
     cardCvc: "000",
-  });
+  };
+  const [cardDetails, setCardDetails] = useState(sampleDetails);
   return (
     <div>
       <Header cardDetails={cardDetails} />
       <main className="container">
         {formComplete ? (
-          <FormCompleted />
+          <FormCompleted
+            setFormState={setFormState}
+            updateCardDetails={setCardDetails}
+            sampleCardDetails={sampleDetails}
+          />
         ) : (
           <CardForm
-            setFormIsComplete={setFormComplete}
+            setFormState={setFormState}
             updateCardDetails={setCardDetails}
           />
         )}

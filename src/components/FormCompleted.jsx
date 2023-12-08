@@ -3,6 +3,10 @@ import FormButton from "./FormButton";
 import iconComplete from "../images/icon-complete.svg";
 
 const FormCompleted = (props) => {
+  const handleSubmit = () => {
+    props.setFormState(false);
+    props.updateCardDetails(props.sampleCardDetails);
+  };
   return (
     <section className="completed-form-container">
       <img
@@ -12,7 +16,9 @@ const FormCompleted = (props) => {
       />
       <h2 className="completed-form-header">Thank You!</h2>
       <p className="completed-form-text">We've added your card details</p>
-      <FormButton buttonText="continue" />
+      <form action="" onSubmit={handleSubmit}>
+        <FormButton buttonText="continue" />
+      </form>
     </section>
   );
 };
