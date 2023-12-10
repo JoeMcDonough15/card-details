@@ -12,12 +12,15 @@
     hsl(278, 94%, 30%)
   );
   --input-error-color: hsl(0, 100%, 66%);
+  --input-error-border: 1px solid var(--input-error-color);
+  --input-focus-border: 1px solid var(--very-dark-violet);
 
   /* Neutral Colors */
   --white: hsl(0, 0%, 100%);
   --light-grayish-violet: hsl(270, 3%, 87%);
   --dark-grayish-violet: hsl(279, 6%, 55%);
   --very-dark-violet: hsl(278, 68%, 11%);
+  --form-input-text: hsl(0, 0%, 75.3%);
 
   /* Styles */
   --curved-border: 0.5rem;
@@ -38,6 +41,15 @@ body {
 
 button {
   border: none;
+}
+
+input:hover,
+button:hover {
+  cursor: pointer;
+}
+
+::placeholder {
+  color: var(--form-input-text);
 }
 
 img {
@@ -147,7 +159,7 @@ img {
 }
 
 .sample-card-number {
-  font-size: 0.95rem; /* 15.2px */
+  font-size: 0.95rem;
   letter-spacing: 0.19em;
   margin-bottom: 1.315em;
   width: max-content;
@@ -193,18 +205,25 @@ img {
   margin-bottom: 0.44em;
 }
 
+.date-container {
+  width: 45%;
+}
+
+.form-field-cvc {
+  width: 50%;
+}
+
 .month-year-row {
   justify-content: space-between;
-  width: 80%;
 }
 
 .month-year-row .form-field {
-  width: 45%;
+  width: 47%;
 }
 
 .form-label,
 .form-button {
-  letter-spacing: 0.0625rem; /* rem instead of em because these elements have different font sizes but I want the same letter spacing */
+  letter-spacing: 0.0625rem;
 }
 
 .form-label {
@@ -219,8 +238,8 @@ img {
 }
 
 .form-input {
-  border: 0.0625em solid var(--light-grayish-violet);
-  color: var(--light-grayish-violet);
+  border: 0.0625em solid var(--form-input-text);
+  color: var(--form-input-text);
   font-size: 1rem;
   padding: 1em;
 }
@@ -255,11 +274,12 @@ img {
 }
 
 .warning {
-  outline: 2px solid var(--input-error-color);
+  outline: var(--input-error-border);
 }
 
 .warning-text {
   color: var(--input-error-color);
+  font-size: 0.8rem;
   visibility: hidden;
   width: max-content;
 }
@@ -272,9 +292,9 @@ img {
   margin-top: 0.5em;
 }
 
-.form-input:focus {
+.form-input:focus:not(.warning) {
   border-radius: var(--curved-border);
-  outline: 2px solid var(--very-dark-violet);
+  outline: var(--input-focus-border);
 }
 
 @media (max-width: 340px) {
@@ -408,7 +428,7 @@ img {
 
   .form-container,
   .completed-form-container {
-    padding: 277px 24% 267px 37%;
+    padding: 277px 15% 267px 37%;
   }
 
   .form-container {
@@ -419,17 +439,12 @@ img {
     margin-bottom: 0.55em;
   }
 
-  .form-field-cvc {
-    width: 40%;
-  }
-
   .form-button {
     padding: 1.11em 8.61em;
   }
 
   .check-mark-img {
-    margin-bottom: 10.19%;
-    width: 80px;
+    width: 100px;
   }
 
   .completed-form-header {
@@ -443,6 +458,7 @@ img {
   }
 
   .continue-form-button {
+    margin-top: 1em;
     padding: 1.11em 8.33em;
   }
 }
