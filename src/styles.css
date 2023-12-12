@@ -427,6 +427,10 @@ img {
     padding: 11.1111em 11.1111em 0 16.6666em;
   }
 
+  .completed-form-container {
+    padding-top: 250px;
+  }
+
   .form-container {
     gap: 0.8em;
   }
