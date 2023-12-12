@@ -27,16 +27,12 @@
   --desktop-header-width: 484px;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 body {
   background-color: var(--white);
   color: var(--very-dark-violet);
   font-family: "Space Grotesk", sans-serif;
   font-size: 1.125rem;
+  min-height: 100vh;
 }
 
 button {
@@ -428,7 +424,7 @@ img {
 
   .form-container,
   .completed-form-container {
-    padding: 277px 15% 267px 37%;
+    padding: 11.1111em 11.1111em 0 16.6666em;
   }
 
   .form-container {
