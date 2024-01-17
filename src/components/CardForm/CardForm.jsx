@@ -230,9 +230,9 @@ const CardForm = (props) => {
     props.setFormState(true);
   };
   return (
-    <form className="form-container" action="" onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit}>
       <div className="form-field" id="cardHolder-parent">
-        <label className="form-label" htmlFor="">
+        <label className="form-label" htmlFor="cardHolder">
           Cardholder Name
         </label>
         <input
@@ -252,10 +252,11 @@ const CardForm = (props) => {
         </p>
       </div>
       <div className="form-field" id="cardNumber-parent">
-        <label className="form-label" htmlFor="">
+        <label className="form-label" htmlFor="cardNumber">
           Card Number
         </label>
         <input
+          id="cardNumber"
           className="form-input"
           name="cardNumber"
           onClick={handleFormValidation}
@@ -274,7 +275,7 @@ const CardForm = (props) => {
         <div className="date-container">
           <div className="month-year-row">
             <div className="form-field" id="expirationMonth-parent">
-              <label className="form-label" htmlFor="">
+              <label className="form-label" htmlFor="month-input">
                 Exp. Date
               </label>
               <input
@@ -288,7 +289,7 @@ const CardForm = (props) => {
               />
             </div>
             <div className="form-field" id="expirationYear-parent">
-              <label className="form-label" htmlFor="">
+              <label className="form-label" htmlFor="year-input">
                 (MM/YY)
               </label>
               <input
@@ -307,10 +308,11 @@ const CardForm = (props) => {
           </p>
         </div>
         <div className="form-field form-field-cvc" id="cardCvc-parent">
-          <label className="form-label" htmlFor="">
+          <label className="form-label" htmlFor="cardCvc">
             CVC
           </label>
           <input
+            id="cardCvc"
             className="form-input"
             name="cardCvc"
             onClick={handleFormValidation}
