@@ -1,18 +1,11 @@
 import React from "react";
 
 const FormButton = (props) => {
-  return (
-    <button
-      className={
-        props.buttonText === "continue"
-          ? "continue-form-button form-button"
-          : "form-button"
-      }
-    >
-      {" "}
-      <input className="submit-button-hidden-input" type="submit"></input>
-      {props.buttonText}
-    </button>
+  const { buttonText, isSubmitButton } = props;
+  return isSubmitButton ? (
+    <input className="form-button" type="submit" value={buttonText}></input>
+  ) : (
+    <button className="form-button continue-form-button">{buttonText}</button>
   );
 };
 export default FormButton;

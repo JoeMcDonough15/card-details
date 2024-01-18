@@ -246,17 +246,13 @@ img {
 
 .form-button {
   background-color: var(--very-dark-violet);
+  border: none;
   color: var(--white);
   font: inherit;
   justify-content: center;
   padding: 1.111em 7.166em;
   text-transform: capitalize;
   width: 100%;
-}
-
-input.submit-button-hidden-input {
-  position: absolute;
-  visibility: hidden;
 }
 
 .continue-form-button {

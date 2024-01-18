@@ -327,7 +327,7 @@ const CardForm = (props) => {
           </p>
         </div>
       </div>
-      <FormButton buttonText="confirm" />
+      <FormButton isSubmitButton buttonText="confirm" />
     </form>
   );
 };
