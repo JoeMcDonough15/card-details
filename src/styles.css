@@ -35,6 +35,10 @@ body {
   min-height: 100vh;
 }
 
+h1.sr-only.entry-title {
+  display: none;
+}
+
 button {
   border: none;
 }
@@ -248,6 +252,11 @@ img {
   padding: 1.111em 7.166em;
   text-transform: capitalize;
   width: 100%;
+}
+
+input.submit-button-hidden-input {
+  position: absolute;
+  visibility: hidden;
 }
 
 .continue-form-button {

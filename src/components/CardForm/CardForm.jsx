@@ -212,7 +212,9 @@ const CardForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const inputElements = Array.from(document.querySelectorAll("input"));
+    const inputElements = Array.from(
+      document.getElementsByClassName("form-input")
+    );
     const warning = inputElements.some((element) => {
       return (
         Array.from(element.classList).includes("warning") ||

@@ -8,8 +8,9 @@ const FormButton = (props) => {
           ? "continue-form-button form-button"
           : "form-button"
       }
-      type="submit"
     >
+      {" "}
+      <input className="submit-button-hidden-input" type="submit"></input>
       {props.buttonText}
     </button>
   );
