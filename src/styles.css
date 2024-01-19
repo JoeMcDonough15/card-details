@@ -62,8 +62,10 @@ img {
 }
 
 .card-images-container {
+  max-width: 343px;
   position: relative;
-  max-width: 344px;
+  top: -213px;
+  width: 91.46666%;
 }
 
 .container {
@@ -99,23 +101,23 @@ img {
 }
 
 .back-of-card {
-  right: 16px;
-  top: -208px;
+  right: 0;
+  top: 0;
 }
 
 .front-of-card {
-  left: 16px;
-  top: -114px;
+  left: 0;
+  top: 94px;
 }
 
 .back-of-card,
 .front-of-card {
   height: 157px;
-  width: 286px;
+  min-width: 220px;
+  width: 83.09%;
 }
 
 .back-of-card-details {
-  font-size: 0.85rem;
   right: 36px;
   top: 70px;
 }
@@ -141,37 +143,36 @@ img {
 }
 
 .front-of-card-details {
-  height: 117px;
   right: 22px;
   top: 18px;
-  width: 247px;
+  width: 86.3636%;
 }
 
 .card-details {
   color: var(--white);
-  letter-spacing: 0.147em;
+  font-size: 0.5625rem;
+  letter-spacing: 0.143em;
 }
 
 .card-logo {
-  height: 30px;
-  margin-bottom: 40px;
-  width: 54px;
+  height: auto;
+  margin-bottom: 14.57%;
+  width: 21.86%;
+}
+
+.sample-card-number,
+.form-input {
+  font-size: inherit;
 }
 
 .sample-card-number {
-  font-size: 0.95rem;
-  letter-spacing: 0.19em;
+  letter-spacing: 0.122em;
   margin-bottom: 1.315em;
   width: max-content;
 }
 
 .card-bottom-row {
   justify-content: space-between;
-}
-
-.sample-card-holder,
-.sample-expiration {
-  font-size: 0.5rem;
 }
 
 .sample-card-holder,
@@ -184,7 +185,7 @@ img {
 .form-container,
 .completed-form-container {
   align-items: center;
-  padding: 92px 6.4% 45px;
+  padding: 91px 6.4% 45px;
 }
 
 .completed-form-container {
@@ -221,13 +222,9 @@ img {
   width: 47%;
 }
 
-.form-label,
-.form-button {
-  letter-spacing: 0.0625rem;
-}
-
 .form-label {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.166em;
   width: max-content;
 }
 
@@ -240,7 +237,6 @@ img {
 .form-input {
   border: 0.0625em solid var(--form-input-text);
   color: var(--form-input-text);
-  font-size: 1rem;
   padding: 1em;
 }
 
@@ -299,17 +295,12 @@ img {
 }
 
 @media (max-width: 340px) {
-  .back-of-card,
-  .front-of-card {
-    width: 260px;
+  .back-of-card-details {
+    top: 62px;
   }
 
   .front-of-card-details {
-    right: 3px;
-  }
-
-  .back-of-card-details {
-    top: 62px;
+    top: 14px;
   }
 
   .sample-card-number {
@@ -335,6 +326,18 @@ img {
 
   .completed-form-text {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .back-of-card-details {
+    top: 60px;
+  }
+}
+
+@media (max-width: 280px) {
+  .back-of-card-details {
+    top: 52px;
   }
 }
 
