@@ -233,7 +233,7 @@ const CardForm = (props) => {
   };
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <div className="form-field" id="cardHolder-parent">
+      <div className="form-field form-field-full-row" id="cardHolder-parent">
         <label className="form-label" htmlFor="cardHolder">
           Cardholder Name
         </label>
@@ -253,7 +253,7 @@ const CardForm = (props) => {
           Can't be blank
         </p>
       </div>
-      <div className="form-field" id="cardNumber-parent">
+      <div className="form-field form-field-full-row" id="cardNumber-parent">
         <label className="form-label" htmlFor="cardNumber">
           Card Number
         </label>
